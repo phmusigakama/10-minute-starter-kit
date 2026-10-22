@@ -1,14 +1,25 @@
-"""POST /api/draft - write 2-3 starter idea drafts from the ideas the user kept."""
+"""POST /api/draft - write 2-3 starter idea drafts from the ideas the user kept.
+
+Vercel file-based Python function: api/draft.py -> /api/draft
+"""
 import json
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# make the shared module importable no matter where the runtime puts us
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+for _p in (_ROOT, os.path.dirname(os.path.abspath(__file__))):
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+
 from _core import KEY, ask, build_payload  # noqa: E402
+from http.server import BaseHTTPRequestHandler  # noqa: E402
 
 
-class handler:
-    """Vercel Python function: BaseHTTPRequestHandler style."""
+class handler(BaseHTTPRequestHandler):
+    """Vercel Python function."""
+
+    server_version = "StarterKit"
 
     def _send(self, code, data):
         raw = json.dumps(data, ensure_ascii=False).encode("utf-8")
