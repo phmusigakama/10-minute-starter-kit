@@ -1,0 +1,15 @@
+# secrets - never upload these
+.env
+.env.*
+!.env.example
+
+# local-only files
+starter-kit-extras/
+__pycache__/
+*.pyc
+*.bak
+start.bat
+
+# git
+.git
+.gitignore

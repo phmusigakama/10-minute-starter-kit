@@ -1,0 +1,14 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# python
+__pycache__/
+*.pyc
+
+# local
+starter-kit-extras/
+*.bak
+.DS_Store
+.vercel
